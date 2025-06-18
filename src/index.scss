@@ -44,15 +44,41 @@ body {
 #info {
   position: absolute;
   right: 1em;
+  padding: 1em;
+}
+
+
+ul {
+  margin: 0;
+  text-indent: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    text-align: right;
+
+    code {
+      width: 4em;
+    }
+  }
 }
 
-#generator {
 
+#keys {
+  .doc {
+    margin: auto 0 auto 0;
+  }
 }
 
-#solver {
-
+#state {
+  margin-top: 2em;
+  span {
+    font-style: italic;
+  }
 }
 
 @container root-container (aspect-ratio < 1) {

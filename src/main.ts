@@ -26,6 +26,9 @@ const MIN_SPEED = 512;
 
 type Elements = {
     canvas: HTMLCanvasElement,
+
+    keys: HTMLElement | null,
+
     info: HTMLElement | null,
     generator: HTMLElement | null,
     solver: HTMLElement | null,
@@ -36,12 +39,13 @@ type Elements = {
 function createDom(): Elements {
     const canvas = document.getElementById('maze-canvas');
     if (!(canvas instanceof HTMLCanvasElement)) throw new Error(`${canvas} is not instanceof HTMLCanvasElement`);
+    const keys = document.getElementById('keys');
     const info = document.getElementById('info');
     const generator = document.getElementById('generator-name');
     const solver = document.getElementById('solver-name');
     const seed = document.getElementById('seed');
     const path_length = document.getElementById('path_length');
-    return {canvas, info, generator, solver, seed, path_length};
+    return {canvas, keys, info, generator, solver, seed, path_length};
 }
 
 async function generateMaze(generator: MazeGenerator, size: Size, renderer: MazeRenderer,
@@ -105,7 +109,7 @@ type MazeState = {
 };
 
 function start(size: Size, seed?: number) {
-    const {canvas, info, generator, solver, seed: seedElement, path_length} = createDom();
+    const {canvas, keys, info, generator, solver, seed: seedElement, path_length} = createDom();
     const renderer = new CanvasMazeRenderer(canvas);
     const generators = createGenerators(seed);
     const solvers = createSolvers(renderer, seed);
@@ -118,6 +122,9 @@ function start(size: Size, seed?: number) {
         cancelled: false,
         info: false
     };
+
+    if (keys)
+        createDoc(keys);
 
     const generate = (show = false) => {
         if (state.promise) {
@@ -263,10 +270,40 @@ function start(size: Size, seed?: number) {
     generate();
 }
 
+type KeyBinding = { code: string, doc: string };
+const keyBindings: KeyBinding[] = [
+    {code: 'g', doc: 'Generate'},
+    {code: 'G', doc: 'Generate (show)'},
+    {code: 's', doc: 'Solved'},
+    {code: 'c', doc: 'Clear'},
+    {code: 'd', doc: 'Toggle'},
+    {code: '+', doc: 'Increase'},
+    {code: '-', doc: 'Decrease'},
+    {code: 'space', doc: 'Skip'},
+    {code: '1, 2, 3', doc: 'Change solver'},
+    {code: 'shift + 1, 2, 3', doc: 'Change generator'},
+]
+
+function createDoc(target: HTMLElement) {
+    for (const key of keyBindings) {
+        const li = document.createElement('li');
+        const code = document.createElement('code');
+        code.innerText = key.code;
+        li.appendChild(code);
+
+        const doc = document.createElement('div');
+        doc.className = 'doc';
+        doc.innerText = key.doc;
+        li.appendChild(doc);
+
+        target.appendChild(li);
+    }
+}
+
 // const MAZE_SIZE = {width: 10, height: 10};
 // const MAZE_SIZE = {width: 20, height: 20};
 // const MAZE_SIZE = {width: 40, height: 40};
- const MAZE_SIZE = {width: 80, height: 80};
+const MAZE_SIZE = {width: 80, height: 80};
 
 const SEED = undefined;
 // const SEED = 1706200766;

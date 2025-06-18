@@ -303,7 +303,13 @@ function createDoc(target: HTMLElement) {
 // const MAZE_SIZE = {width: 10, height: 10};
 // const MAZE_SIZE = {width: 20, height: 20};
 // const MAZE_SIZE = {width: 40, height: 40};
-const MAZE_SIZE = {width: 80, height: 80};
+// const MAZE_SIZE = {width: 60, height: 60};
+// const MAZE_SIZE = {width: 80, height: 80};
+// const MAZE_SIZE = {width: 100, height: 100};
+// const MAZE_SIZE = {width: 120, height: 120};
+const MAZE_SIZE = {width: 160, height: 160};
+ // const MAZE_SIZE = {width: 180, height: 180};
+// const MAZE_SIZE = {width: 200, height: 200};
 
 const SEED = undefined;
 // const SEED = 1706200766;

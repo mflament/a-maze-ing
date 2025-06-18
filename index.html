@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A maze ing</title>
+  </head>
+  <body>
+    <div id="root">
+        <canvas id="maze-canvas"></canvas>
+        <div id="info">
+            <ul class="keys">
+                <li></li>
+            </ul>
+            <ul class="state">
+                <li title="Seed">Seed: <span id="seed"></span></li>
+                <li title="Generator">Generator: <span id="generator-name"></span></li>
+                <li title="Solver">Solver: <span id="solver-name"></span></li>
+                <li title="Path length">Length: <span id="path_length" ></span></li>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

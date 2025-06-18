@@ -1,0 +1,68 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  container: root-container / size;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+}
+
+#maze-canvas {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+#info {
+  position: absolute;
+  right: 1em;
+  list-style: none;
+}
+
+#generator {
+
+}
+
+#solver {
+
+}
+
+@container root-container (aspect-ratio < 1) {
+  #root {
+    flex-direction: column;
+
+    #maze-canvas {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+

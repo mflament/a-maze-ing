@@ -81,9 +81,9 @@ async function generateMaze(generator: MazeGenerator, size: Size, renderer: Maze
 
 function createGenerators(seed?: number): MazeGenerator[] {
     return [
-        new TestMazeGenerator(seed),
         new RandomizedDepthFirstMazeGenerator(seed),
-        new WilsonMazeGenerator(seed)
+        new WilsonMazeGenerator(seed),
+        new TestMazeGenerator(seed),
     ];
 }
 
@@ -264,8 +264,8 @@ function start(size: Size, seed?: number) {
 
     window.addEventListener('keydown', keydown);
 
-    setGenerator(2);
-    setSolver(2);
+    setGenerator(0);
+    setSolver(0);
 
     generate();
 }
@@ -274,7 +274,7 @@ type KeyBinding = { code: string, doc: string };
 const keyBindings: KeyBinding[] = [
     {code: 'g', doc: 'Generate'},
     {code: 'G', doc: 'Generate (show)'},
-    {code: 's', doc: 'Solved'},
+    {code: 's', doc: 'Solve'},
     {code: 'c', doc: 'Clear'},
     {code: 'd', doc: 'Toggle'},
     {code: '+', doc: 'Increase'},
